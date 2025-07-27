@@ -9,6 +9,9 @@
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
+.DS_Store
+.idea
+mvnw.cmd
 
 # Package Files #
 *.jar
