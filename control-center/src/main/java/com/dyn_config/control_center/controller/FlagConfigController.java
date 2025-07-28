@@ -29,7 +29,7 @@ public class FlagConfigController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<FlagConfig> getConfigById(@PathVariable("id") long id) throws NotActiveException {
+    public ResponseEntity<FlagConfig> getConfigById(@PathVariable("id") String id) throws NotActiveException {
         //throw new NotActiveException("API in Development!");
         log.info(LogMessages.GET_FLAG_CONFIG_BY_ID, id);
         return ResponseEntity.ok().body(flagConfigService.getFlagConfigById(id));
@@ -38,9 +38,9 @@ public class FlagConfigController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ResponseEntity<FlagConfig> createFlagConfig(@RequestBody FlagConfig flagConfig) throws NotActiveException {
         log.info(LogMessages.CREATE_FLAG_CONFIG, flagConfig.getFlagName());
-        throw new NotActiveException("API in Development!");
+        //throw new NotActiveException("API in Development!");
 
-        //return ResponseEntity.ok().body(flagConfigService.createFlagConfig(flagConfig));
+        return ResponseEntity.ok().body(flagConfigService.createFlagConfig(flagConfig));
     }
 
     @RequestMapping(value = "/", method = RequestMethod.PUT)
@@ -48,6 +48,13 @@ public class FlagConfigController {
         log.info(LogMessages.UPDATE_FLAG_CONFIG, flagConfig.getFlagName());
         //throw new NotActiveException("API in Development!");
         return ResponseEntity.ok().body(flagConfigService.updateFlagConfig(flagConfig));
+    }
+
+    @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> deleteFlagConfig(@PathVariable("id") String id) {
+        log.info(LogMessages.DELETE_FLAG_CONFIG, id);
+        flagConfigService.deleteFlagConfig(id);
+        return ResponseEntity.ok("Deleted Successfully");
     }
 
 }

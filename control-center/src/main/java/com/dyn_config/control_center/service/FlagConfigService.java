@@ -23,8 +23,8 @@ public class FlagConfigService {
         return (List<FlagConfig>) flagConfigRepo.findAll();
     }
 
-    public FlagConfig getFlagConfigById(long id) {
-       return flagConfigRepo.findById(id).orElseThrow(() -> new NoSuchElementException(ErrorMessages.NO_CONFIG_FOUND));
+    public FlagConfig getFlagConfigById(String name) {
+       return flagConfigRepo.findById(name).orElseThrow(() -> new NoSuchElementException(ErrorMessages.NO_CONFIG_FOUND));
     }
 
     public FlagConfig createFlagConfig(FlagConfig flagConfig) {
@@ -39,13 +39,17 @@ public class FlagConfigService {
     }
 
     public FlagConfig updateFlagConfig(FlagConfig flagConfig) {
-        FlagConfig flagConfigToSave = getFlagConfigById(flagConfig.getId());
+        FlagConfig flagConfigToSave = getFlagConfigById(flagConfig.getFlagName());
         flagConfigToSave.setFlagName(flagConfig.getFlagName());
         flagConfigToSave.setFlagState(flagConfig.getFlagState());
         flagConfigToSave.setFlagContent(flagConfig.getFlagContent());
         flagConfigToSave.setUpdatedAt(LocalDateTime.now());
 
         return flagConfigRepo.save(flagConfig);
+    }
+
+    public void deleteFlagConfig(String id) {
+        flagConfigRepo.deleteById(id);
     }
 
 }
