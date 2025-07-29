@@ -1,13 +1,13 @@
-package com.dyn_config.gyn_config_client;
+package com.dyn_config.dyn_config_client;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GynConfigClientApplication {
+public class DynConfigClientApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GynConfigClientApplication.class, args);
+		SpringApplication.run(DynConfigClientApplication.class, args);
 	}
 
 }
